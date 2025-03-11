@@ -1,28 +1,26 @@
 # pinia-to-indexeddb
 
-This template should help get you started developing with Vue 3 in Vite.
+这是一个示例工程，实现Vue3 Pinia大容量状态数据持久化保存到浏览器IndexedDB数据库
 
-## Recommended IDE Setup
+演示截屏：
+![演示](https://oss.mu-jie.cc/img/piniatoindexeddb.png)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+核心JS文件：`src/PiniaToDB.js`和`src/indexeddb.js`
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## 安装依赖
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 启动
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### 打包
 
 ```sh
 npm run build
