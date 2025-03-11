@@ -1,8 +1,10 @@
 {
   "name": "pinia-to-indexeddb",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Vue Pinia状态数据持久化保存到Indexeddb",
   "private": true,
   "type": "module",
+  "author": "昔枫沐杰",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
