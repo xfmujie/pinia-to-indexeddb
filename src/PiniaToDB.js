@@ -3,14 +3,8 @@
  * - 功能描述:
  *   将pinia中的state存入IndexedDB
  * 
- * - 自封装DBStorage:
- *   不局限于IndexedDB，可自行封装一个DBStorage，包含getItem, setItem方法
- *   getItem方法：@param {string} key 键名, @returns {Promise | string | object | array} 支持Promise, 如结果字符串符合对象数组格式，需返回反序列化对象或数组
- *   setItem方法: @param {string} key 键名, @param {string | object | array} value 键值, 如value为对象或数组, 方法中需序列化为字符串 @returns {*}
- * 
  * - 使用方法:
  *   参考src/main.js
- * 
  * 
  * @author 昔枫沐杰
  * @Date 2025-03-09
@@ -28,7 +22,6 @@ class PiniaToDB {
     this.store = store;
     this.stateArr = [];
     this.db = new IndexedDBStorage(dbName, storeName);
-    this.hydrate();
   }
 
   async hydrate() {
@@ -45,7 +38,9 @@ class PiniaToDB {
    * @description 订阅store中的state变化，变化后存入IndexedDB
    * @param {string[]} stateArr 订阅的state数组，不传或空数组则订阅全部
    */
-  subscribe(stateArr = []) {
+  async subscribe(stateArr = []) {
+    // 订阅前先从IndexedDB加载数据，避免数据冲突
+    await this.hydrate();
     this.stateArr = stateArr;
     this.unSubscribe = this.store.$subscribe((mutation, state) => {
       if (stateArr.length == 0) {
